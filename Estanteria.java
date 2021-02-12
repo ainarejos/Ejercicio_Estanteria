@@ -1,15 +1,23 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
+
 public class Estanteria {
+    //Atributos.
     ArrayList<Llibre> estanteria = new ArrayList<>();
 
+    //Metodos.
     public Estanteria(){}
 
-    public void AfegirLlibre(Llibre llibre){
-        if (ComprovaLlibre(llibre)){
-            estanteria.add(llibre);
+    public void AfegirLlibre(Llibre llibre) throws Exception {
+        try {
+            if (ComprovaLlibre(llibre)&&estanteria.size()<10){
+                estanteria.add(llibre);
+            } else{
+                throw new Exception("Liberia llena");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -21,38 +29,24 @@ public class Estanteria {
         return Cl;
     }
 
-    public void EliminarLlibre(String llibre){
-        for (int i = 0; i < estanteria.size() ; i++) {
-            Llibre libro= estanteria.get(i);
-            if ((libro.getAutor().equals(estanteria.get(i).getAutor())||(libro.getTitol().equals(estanteria.get(i).getTitol())))){
-                estanteria.remove(i);
-                Llibre llibre0=new Llibre("", "", 0);
-                estanteria.add(llibre0);
-
-                System.out.println("Ganamos");
+    public void EliminarLlibre(String llibre) throws Exception {
+        try {
+            boolean comprobador=true;
+            for (int i = 0; i < estanteria.size() ; i++) {
+                if ((llibre.equals(estanteria.get(i).getAutor())||(llibre.equals(estanteria.get(i).getTitol())))){
+                    estanteria.remove(i);
+                    Llibre llibre0=new Llibre("", "", 0);
+                    estanteria.add(llibre0);
+                    System.out.println("Ganamos");
+                    comprobador=false;
+                }
             }
-        }
-
-    }
-
-    private boolean ComprovarAutor(String llibre){
-        boolean Ca=false;
-        for (int i = 0; i <estanteria.size() ; i++) {
-            if (estanteria.get(i).getTitol().equals(llibre)){
-                Ca=true;
+            if (comprobador){
+                throw new Exception("No se ha encontrado el libro");
             }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
-        return Ca;
-    }
-
-    private boolean ComprovarTitulo(String llibre){
-        boolean Ca=false;
-        for (int i = 0; i <estanteria.size() ; i++) {
-            if (estanteria.get(i).getAutor().equals(llibre)){
-                Ca=true;
-            }
-        }
-        return Ca;
     }
 
     public void Top10(){
