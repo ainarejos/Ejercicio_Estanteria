@@ -35,9 +35,6 @@ public class Estanteria {
             for (int i = 0; i < estanteria.size() ; i++) {
                 if ((llibre.equals(estanteria.get(i).getAutor())||(llibre.equals(estanteria.get(i).getTitol())))){
                     estanteria.remove(i);
-                    Llibre llibre0=new Llibre("", "", 0);
-                    estanteria.add(llibre0);
-                    System.out.println("Ganamos");
                     comprobador=false;
                 }
             }

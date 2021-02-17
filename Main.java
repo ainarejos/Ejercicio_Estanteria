@@ -22,8 +22,8 @@ public class Main {
         e1.AfegirLlibre(l8);
         e1.AfegirLlibre(l9);
         e1.AfegirLlibre(l10);
+        e1.EliminarLlibre("James Charles");
         e1.AfegirLlibre(l11);
-        //e1.EliminarLlibre("James Charles");
         e1.Top10();
         e1.VeuresEstanteria();
     }
